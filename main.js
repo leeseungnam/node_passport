@@ -19,6 +19,10 @@ app.use(session({
   store:new FileStore()
 }))
 
+// passport는 무조건 session 모듈 활성화 이후 처리해주어야 함.
+var passport = require('passport')
+  , LocalStrategy = require('passport-local').Strategy;
+
 app.get('*', function(request, response, next){
   fs.readdir('./data', function(error, filelist){
     request.list = filelist;
